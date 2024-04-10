@@ -1,4 +1,3 @@
-version: '3.3'
 services:
     speedtest-tracker:
         container_name: speedtest-tracker
@@ -31,6 +30,13 @@ services:
             - MARIADB_RANDOM_ROOT_PASSWORD=true
         volumes:
             - speedtest-db:/var/lib/mysql
+    adminer:
+        restart: always
+        image: adminer:latest
+        ports:
+            - "8092:80"
+        depends_on:
+            - db
 volumes:
   speedtest-app:
   speedtest-db:
